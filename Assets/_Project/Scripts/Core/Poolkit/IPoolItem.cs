@@ -1,8 +1,12 @@
 using UnityEngine;
 
-public interface IPoolItem
+namespace YFramework.PoolKit
 {
-    void OnAllocate();
+    public interface IPoolItem
+    {
+        void OnAllocate();
     
-    void OnRecycle();
+        void OnRecycle();
+    }
 }
+
