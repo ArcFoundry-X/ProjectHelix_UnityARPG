@@ -22,11 +22,11 @@ namespace YFramework.HFSM
         {
         }
 
-        public void OnFixedUpdate(float fixedDeltaTime)
+        public virtual void OnFixedUpdate(float fixedDeltaTime)
         {
         }
 
-        public void OnExit()
+        public virtual void OnExit()
         {
         }
     }

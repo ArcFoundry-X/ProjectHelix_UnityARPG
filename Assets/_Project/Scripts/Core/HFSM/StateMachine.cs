@@ -17,11 +17,9 @@ namespace YFramework.HFSM
         private IState _currentState;
 
         private string _defaultStateName;
-        
+
         // 注册的所有子状态 name -> IState
         private readonly Dictionary<string, IState> _states = new();
-        //黑板数据
-        private readonly Dictionary<string, Object> _blackboard = new();
         
         // 转换列表（包括 AnyState 转换）
         private readonly List<Transition> _transitions = new();
@@ -36,8 +34,8 @@ namespace YFramework.HFSM
         public void Run<TState>() where TState : StateBase
         {
             var stateType = typeof(TState);
-            var stateName = stateType.FullName;
-            
+            var stateName = stateType.Name;
+
             Run(stateName);
         }
 
@@ -117,7 +115,7 @@ namespace YFramework.HFSM
         public void ChangeState<T>() where T : StateBase
         {
             var nodeType = typeof(T);
-            var stateName = nodeType.FullName;
+            var stateName = nodeType.Name;
             ChangeState(stateName);
         }
         
@@ -142,7 +140,7 @@ namespace YFramework.HFSM
         /// <param name="value"></param>
         public void SetBlackboardValue(string key, Object value)
         {
-            _blackboard[key] = value;
+            Blackboard.Set(key, value);
         }
 
         /// <summary>
@@ -150,9 +148,9 @@ namespace YFramework.HFSM
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public Object TryGetBlackboardValue(string key)
+        public  Object TryGetBlackboardValue(string key)
         {
-            _blackboard.TryGetValue(key, out var value);
+            Blackboard.TryGet<Object>(key, out var value);
             return value;
         }
         

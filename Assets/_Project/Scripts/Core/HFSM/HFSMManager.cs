@@ -15,31 +15,24 @@ namespace YFramework.HFSM
         }
 
         private readonly List<AgentEntry> _agents = new();
+        private readonly List<AgentEntry> _pendingAdd = new();
+        private readonly List<StateMachine> _pendingRemove = new();
 
         public StateMachine Create(string machineName)
         {
-            StateMachine machine = new StateMachine(machineName);
-            
-            
-            return machine;
+            return new StateMachine(machineName);
         }
-        
+
         public void Register(StateMachine stateMachine)
         {
-            var entry = new AgentEntry() { StateMachine = stateMachine };
-            _agents.Add(entry);
-
             stateMachine.OnEnter();
+            _pendingAdd.Add(new AgentEntry { StateMachine = stateMachine });
         }
 
         public void UnRegister(StateMachine stateMachine)
         {
-            var entry = _agents.Find(e => e.StateMachine == stateMachine);
-            if (entry == null) return;
-
             stateMachine.OnExit();
-
-            _agents.Remove(entry);
+            _pendingRemove.Add(stateMachine);
         }
 
         // ── 单个 machine 控制 ──────────────────────────────────────
@@ -58,12 +51,27 @@ namespace YFramework.HFSM
 
         // ── Tick ─────────────────────────────────────────────────
 
+        private void FlushPending()
+        {
+            if (_pendingAdd.Count > 0)
+            {
+                _agents.AddRange(_pendingAdd);
+                _pendingAdd.Clear();
+            }
+            if (_pendingRemove.Count > 0)
+            {
+                foreach (var sm in _pendingRemove)
+                    _agents.RemoveAll(e => e.StateMachine == sm);
+                _pendingRemove.Clear();
+            }
+        }
+
         private void Update()
         {
+            FlushPending();
             foreach (var entry in _agents)
             {
                 if (entry.IsPaused) continue;
-
                 entry.StateMachine.OnUpdate(Time.deltaTime);
             }
         }

@@ -137,6 +137,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100002, guid: 9f9fac72b36530641b0b2d4029aeaa3b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4377754368380427305}
+    - targetCorrespondingSourceObject: {fileID: 100002, guid: 9f9fac72b36530641b0b2d4029aeaa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5510640063231545705}
+    - targetCorrespondingSourceObject: {fileID: 100002, guid: 9f9fac72b36530641b0b2d4029aeaa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4679586322046498348}
   m_SourcePrefab: {fileID: 100100000, guid: 9f9fac72b36530641b0b2d4029aeaa3b, type: 3}
 --- !u!4 &5078425892903152128 stripped
 Transform:
@@ -171,6 +177,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationManager
   clip: {fileID: 7400000, guid: f6edd54f942b6bf449788a30b3573de8, type: 3}
+--- !u!114 &-5510640063231545705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078425892903253606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f176fb974955f4f9cccc10df5df110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterInput
+  _inputReader: {fileID: 4679586322046498348}
+--- !u!114 &4679586322046498348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078425892903253606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e217d9a48a18f7645b4d198f55e974af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputReader
 --- !u!1001 &5169178051131437625
 PrefabInstance:
   m_ObjectHideFlags: 0

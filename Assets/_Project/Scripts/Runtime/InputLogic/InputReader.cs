@@ -15,6 +15,7 @@ public class InputReader : MonoBehaviour, WindowsInputSystem.IGameplayActions
     public event Action<int> OnSkillReleased;
     public event Action OnDodge;
 
+
     private void OnEnable()
     {
         if (_inputSystem == null)
@@ -38,7 +39,7 @@ public class InputReader : MonoBehaviour, WindowsInputSystem.IGameplayActions
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        
+        Debug.Log("OnJump");
     }
 
     public void OnSkill1(InputAction.CallbackContext context)
@@ -58,8 +59,13 @@ public class InputReader : MonoBehaviour, WindowsInputSystem.IGameplayActions
 
     void HandleSkill(int slot, InputAction.CallbackContext ctx)
     {
-        if(ctx.performed) OnSkillPressed?.Invoke(slot);
-        else if(ctx.canceled) OnSkillReleased?.Invoke(slot);
+
+        if (ctx.performed)
+        {
+            OnSkillPressed?.Invoke(slot);
+            
+            Debug.Log($"Skill {slot} performed");
+        }
     }
     
     // public void OnDodge(InputAction.CallbackContext ctx)

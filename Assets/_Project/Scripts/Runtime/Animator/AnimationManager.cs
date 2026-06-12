@@ -10,13 +10,5 @@ public class AnimationManager : MonoBehaviour
     {
         GetComponent<Animator>().Play("Attack_03");
         Debug.Log("play ani");
-
-        WindowsInputSystem windowsInputSystem = new WindowsInputSystem();
-        windowsInputSystem.Gameplay.Enable();
-        
-        windowsInputSystem.Gameplay.Jump.performed += ctx =>
-        {
-            Debug.Log("jump");
-        };
     }
 }
